@@ -20,25 +20,23 @@ import com.ohnosequences.bio4j.titan.model.util._
 object TestBundles {
 
   def checkGorilla(nodeRetriever: NodeRetrieverTitan): InstallResults = {
-    lazy val gorilla = nodeRetriever.getNCBITaxonByTaxId("9595")
-    if(gorilla.getScientificName == "Gorilla gorilla gorilla")
-         success("ModuleTestBundle: Got Gorilla taxon by Tax ID")
-    else failure("ModuleTestBundle: Couldn't find Gorilla taxon!")
+    // FIXME: write an actual test
+    failure("NO TEST!")
   }
 
   case object TestBundle 
-    extends ReleaseBundle(NCBITaxonomyRelease.s3address, NCBITaxonomyRelease.module) {
+    extends ReleaseBundle(RefSeqRelease.s3address, RefSeqRelease.module) {
       override def install[D <: AnyDistribution](d: D): InstallResults = {
         checkGorilla(new NodeRetrieverTitan(
-            new Bio4jManager(NCBITaxonomyRelease.module.dbLocation.getAbsolutePath))) -&-
-        NCBITaxonomyRelease.install(d) -&-
-        NCBITaxonomyDistribution.install(d) -&-
-        checkGorilla(NCBITaxonomyDistribution.nodeRetriever)
+            new Bio4jManager(RefSeqRelease.module.dbLocation.getAbsolutePath))) -&-
+        RefSeqRelease.install(d) -&-
+        RefSeqDistribution.install(d) -&-
+        checkGorilla(RefSeqDistribution.nodeRetriever)
       }
   }
 
   case object TestApplicator extends AWSDistribution(
-    NCBITaxonomyMetadata,
+    RefSeqMetadata,
     amzn_ami_pv_64bit(Region.Ireland)(javaHeap = 6),
     members = TestBundle :~: ∅
   )
