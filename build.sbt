@@ -4,15 +4,15 @@ Statika.distributionProject
 
 organization := "bio4j"
 
-name := "ncbi-taxonomy-module"
+name := "refseq-module"
 
-description := "NCBI Taxonomy module of Bio4j"
+description := "RefSeq module of Bio4j"
 
 bucketSuffix := "era7.com"
 
 
 libraryDependencies ++= Seq(
-  "bio4j" %% "modules" % "0.3.0",
+  "bio4j" %% "modules" % "0.3.0-SNAPSHOT",
   "ohnosequences" %% "amazon-linux-ami" % "0.15.0",
   "ohnosequences" %% "aws-scala-tools" % "0.6.1",
   "ohnosequences" %% "statika-cli" % "0.17.0" % "test"

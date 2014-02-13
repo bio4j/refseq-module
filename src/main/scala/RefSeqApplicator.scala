@@ -6,8 +6,8 @@ import ohnosequences.statika.aws._
 import ohnosequences.statika.ami._
 import ohnosequences.awstools.regions._
 
-case object NCBITaxonomyApplicator extends AWSDistribution(
-  NCBITaxonomyMetadata,
+case object RefSeqApplicator extends AWSDistribution(
+  RefSeqMetadata,
   amzn_ami_pv_64bit(Region.Ireland)(javaHeap = 6),
-  members = NCBITaxonomyRelease :~: NCBITaxonomyDistribution :~: ∅
+  members = RefSeqRelease :~: RefSeqDistribution :~: ∅
 )
